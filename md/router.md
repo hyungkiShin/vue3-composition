@@ -52,3 +52,11 @@ import 'bootstrap/dist/js/bootstrap.js';
 - 현재 컴포넌트에 대한 path 정보 가져오기
   - vue-router 에서 useRoute() 가져오기
   - const route = useRoute()
+
+
+### '<RouterLink>'
+- Vue Router 에서는 페이지를 이동할 때 a 태그를 사용하는 대신 커스텀 컴포넌트인 RouterLink 를 사용하여 다른 페이지 링크를 만들어야 한다.
+- 이유는 a 태그로 이동시 페이지가 새로고침 되버리기 때문에, singlePage App 에선 RouterLink 로 이동하는것이 페이지 리로딩 없이 이동 하기 때문에, 사용자 경험상 RouterLink 를 사용해야 한다.
+
+### '<RouterView>'
+- Url 에 매핑된 컴포넌트를 화면에 표시한다.
