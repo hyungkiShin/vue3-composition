@@ -1,10 +1,10 @@
 <script setup>
 import TheHeader from '@/layouts/TheHeader.vue';
-import TheVue from '@/layouts/TheVue.vue';
+import TheView from '@/layouts/TheView.vue';
 </script>
 <template>
   <TheHeader></TheHeader>
-  <TheVue></TheVue>
+  <TheView></TheView>
 </template>
 
 <style scoped></style>
