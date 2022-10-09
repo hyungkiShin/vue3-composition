@@ -60,3 +60,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 
 ### '<RouterView>'
 - Url 에 매핑된 컴포넌트를 화면에 표시한다.
+
+### url 을 통해 Parameter 를 넘기는 방법
+- query, hash 두가지 형태로 받을수 있다.
+- /users/searchText=love -> query
+- /users/alice#profile   -> hash

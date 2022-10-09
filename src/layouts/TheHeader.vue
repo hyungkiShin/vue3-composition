@@ -26,9 +26,29 @@
                 >About</RouterLink
               >
             </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" active-class="active" to="/posts"
+                >게시글</RouterLink
+              >
+            </li>
           </ul>
+        </div>
+        <div class="d-flex">
+          <button class="btn btn-outline-light" type="button" @click="goPage">
+            글쓰기
+          </button>
         </div>
       </div>
     </nav>
   </header>
 </template>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const goPage = () => {
+  router.push({
+    name: 'PostCreate',
+  });
+};
+</script>
