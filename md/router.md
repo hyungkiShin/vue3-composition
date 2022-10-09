@@ -65,3 +65,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 - query, hash 두가지 형태로 받을수 있다.
 - /users/searchText=love -> query
 - /users/alice#profile   -> hash
+
+### replace 사용법
+```html
+<RouterLink :to="{name: [registCustomName], replace: true}" />
+```
