@@ -20,7 +20,7 @@
 
 <script setup>
 import { computed, inject } from 'vue';
-
+import AppCard from '@/components/app/AppCard.vue';
 const props = defineProps({
   title: {
     type: String,

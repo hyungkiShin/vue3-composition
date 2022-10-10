@@ -2,16 +2,19 @@
   "name": "vue-project",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "test:unit": "cypress open --component",
     "test:unit:ci": "cypress run --component --quiet --reporter spec",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "db": "json-server --watch db.json --port 9000"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "axios": "^1.1.2",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "dayjs": "^1.11.2",
@@ -26,6 +29,7 @@
     "eslint": "^8.22.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^9.3.0",
+    "json-server": "^0.17.0",
     "prettier": "^2.7.1",
     "start-server-and-test": "^1.14.0",
     "vite": "^3.0.9"
