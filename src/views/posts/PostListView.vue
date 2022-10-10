@@ -2,84 +2,119 @@
   <div>
     <h2>게시글 목록</h2>
     <hr class="my-4" />
-    <PostFilter v-model:title="params.title_like" v-model="params._limit" />
+
+    <PostFilter
+      v-model:title="params.title_like"
+      :limit="params._limit"
+      @update:limit="changeLimit"
+    />
+    <!-- v-model:limit="params._limit" -->
 
     <hr class="my-4" />
-    <div class="row g-3">
-      <AppGrid :items="posts">
+
+    <AppLoading v-if="loading" />
+
+    <AppError v-else-if="error" :message="error.message" />
+
+    <template v-else-if="!isExist">
+      <p class="text-center py-4 text-muted">No Results</p>
+    </template>
+
+    <template v-else>
+      <AppGrid :items="posts" col-class="col-12 col-md-6 col-lg-4">
         <template v-slot="{ item }">
           <PostItem
             :title="item.title"
             :content="item.content"
             :created-at="item.createdAt"
             @click="goPage(item.id)"
+            @modal="openModal(item)"
+            @preview="selectPreview(item.id)"
           ></PostItem>
         </template>
       </AppGrid>
-    </div>
-    <AppPagination
-      :current-page="params._page"
-      :page-count="pageCount"
-      @page="page => (params._page = page)"
-    />
-    <hr class="my-5" />
-    <AppCard>
-      <PostDetailView id="1"></PostDetailView>
-    </AppCard>
+
+      <AppPagination
+        :current-page="params._page"
+        :page-count="pageCount"
+        @page="page => (params._page = page)"
+      />
+    </template>
+    <Teleport to="#modal">
+      <PostModal
+        v-model="show"
+        :title="modalTitle"
+        :content="modalContent"
+        :created-at="modalCreatedAt"
+      />
+    </Teleport>
+
+    <template v-if="previewId">
+      <hr class="my-5" />
+      <AppCard>
+        <PostDetailView :id="previewId"></PostDetailView>
+      </AppCard>
+    </template>
   </div>
 </template>
 
 <script setup>
-import { getPosts } from '@/api/post';
-import { computed, ref, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
-import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostItem from '@/components/posts/PostItem.vue';
+import PostDetailView from '@/views/posts/PostDetailView.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
+import PostModal from '@/components/posts/PostModal.vue';
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAxios } from '@/hooks/useAxios';
 
 const router = useRouter();
-const posts = ref([]);
 
-// pagination
-const totalCount = ref(0);
-const pageCount = computed(() =>
-  Math.ceil(totalCount.value / params.value._limit),
-);
+const previewId = ref(null);
+const selectPreview = id => (previewId.value = id);
 
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
   _page: 1,
-  _limit: 3,
+  _limit: 6,
   title_like: '',
 });
-
-const fetchPosts = async () => {
-  // ({ data: posts.value, headers } = await getPosts(params.value));
-  const { data, headers } = await getPosts(params.value);
-  posts.value = data;
-  totalCount.value = headers['x-total-count'];
+const changeLimit = value => {
+  params.value._limit = value;
+  params.value._page = 1;
 };
-
-watchEffect(fetchPosts);
-// fetchPosts();
-
+const {
+  response,
+  data: posts,
+  error,
+  loading,
+} = useAxios('/posts', { params });
+const isExist = computed(() => posts.value && posts.value.length > 0);
+// pagination
+const totalCount = computed(() => response.value.headers['x-total-count']);
+const pageCount = computed(() =>
+  Math.ceil(totalCount.value / params.value._limit),
+);
 const goPage = id => {
-  /* path 로 이동하는 법
-    router.push(`/posts/${id}`);
-  */
-  /* router 에 정의한 name 으로 객체를 보냄으로 써 이동하는 법 */
+  // router.push(`/posts/${id}`);
   router.push({
     name: 'PostDetail',
     params: {
       id,
     },
-    // query: {
-    //   searchText: 'hello',
-    // },
-    // hash: '#world',
   });
+};
+// modal
+const show = ref(false);
+const modalTitle = ref('');
+const modalContent = ref('');
+const modalCreatedAt = ref('');
+const openModal = ({ title, content, createdAt }) => {
+  show.value = true;
+  modalTitle.value = title;
+  modalContent.value = content;
+  modalCreatedAt.value = createdAt;
 };
 </script>
 
-<style scope></style>
+<style lang="scss" scoped></style>

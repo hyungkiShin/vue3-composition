@@ -1,13 +1,7 @@
 import axios from 'axios';
 
 function create(baseURL, options) {
-  axios.headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Credentials': 'true',
-  };
   const instance = axios.create(Object.assign({ baseURL }, options));
-
   return instance;
 }
 

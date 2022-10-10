@@ -20,6 +20,7 @@
 
 <script setup>
 import { computed, inject } from 'vue';
+
 const props = defineProps({
   title: {
     type: String,

@@ -2,17 +2,33 @@
   <div>
     <h2>About View</h2>
     <p>{{ $route.path }}</p>
-    <p>{{ $route.name }}</p>
     <button class="btn btn-primary" @click="$router.push('/')">
-      Home 으로 이동
+      Home으로 이동
     </button>
+    <h2>Store</h2>
+    <p>counter: {{ counter }}</p>
+    <p>doubleCount: {{ doubleCount }}</p>
+    <p>doubleCountPlusOne: {{ doubleCountPlusOne }}</p>
+    <button @click="increment()">Click!!</button>
   </div>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router';
+import { useCounterStore } from '@/stores/counter';
+import { storeToRefs } from 'pinia';
+
 const route = useRoute();
-console.log('route 정보 가져오기', route.path);
+console.log('route.path: ', route.path);
+
+const store = useCounterStore();
+
+const { counter, doubleCount, doubleCountPlusOne } = storeToRefs(store);
+const { increment } = store;
+counter.value = 100;
+// increment();
+// increment();
+// increment();
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>

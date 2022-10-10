@@ -1,14 +1,16 @@
 <template>
+  <!--
+
+	/ -> HomeView.vue
+	/about ->  AboutView.vue
+-->
   <main>
-    <div class="conainer py-4">
+    <div class="container py-4">
       <RouterView></RouterView>
     </div>
   </main>
 </template>
+
 <script setup></script>
 
-<style scope>
-.conainer div {
-  padding: 25px;
-}
-</style>
+<style lang="scss" scoped></style>
