@@ -40,7 +40,7 @@ const router = useRouter();
 
 const post = ref({
   title: null,
-  comment: null,
+  content: null,
   createdAt: null,
 });
 
@@ -53,9 +53,9 @@ const fetchPost = async () => {
   }
 };
 
-const setPost = ({ title, comment, createdAt }) => {
+const setPost = ({ title, content, createdAt }) => {
   post.value.title = title;
-  post.value.comment = comment;
+  post.value.content = content;
   post.value.createdAt = createdAt;
 };
 fetchPost();

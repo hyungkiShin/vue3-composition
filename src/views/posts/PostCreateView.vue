@@ -2,28 +2,12 @@
   <div>
     <h2>게시글 등록</h2>
     <hr class="my-4" />
-    <form @submit.prevent>
-      <div>
-        <label for="exampleFormControlInput1" class="form-label">제목</label>
-        <input
-          type="text"
-          class="form-control"
-          id="exampleControlInput1"
-          v-model="form.title"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">
-          내용
-        </label>
-        <textarea
-          v-model="form.content"
-          class="form-control"
-          id="content"
-          rows="3"
-        ></textarea>
-      </div>
-      <div class="pt-4">
+    <PostForm
+      v-model:title="form.title"
+      v-model:content="form.content"
+      @submit.prevent="save"
+    >
+      <template #actions>
         <button
           type="button"
           class="btn btn-outline-dark me-2"
@@ -32,15 +16,16 @@
           목록
         </button>
         <button class="btn btn-primary" @click="save">저장</button>
-      </div>
-    </form>
+      </template>
+    </PostForm>
   </div>
 </template>
 
 <script setup>
-import { createPost } from '@/api/post';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { createPost } from '@/api/post';
+import PostForm from '@/components/posts/PostForm.vue';
 
 const router = useRouter();
 const form = ref({
@@ -48,16 +33,19 @@ const form = ref({
   content: null,
 });
 
-const save = () => {
-  createPost({
+const save = async () => {
+  await createPost({
     ...form.value,
     createdAt: Date.now(),
   });
-  router.push({ name: 'PostList' });
+  goListPage();
 };
+
 const goListPage = () => {
   router.push({ name: 'PostList' });
 };
+
+const visibleForm = ref(true);
 </script>
 
 <style scope></style>

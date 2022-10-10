@@ -4,8 +4,12 @@ import 'bootstrap/dist/js/bootstrap.js';
 import { createApp } from 'vue';
 import router from './router';
 import App from './App.vue';
+import globalComponents from './plugins/global-components';
+const app = createApp(App);
 
-createApp(App).use(router).mount('#app');
+app.use(router);
+app.use(globalComponents);
+app.mount('#app');
 // const app = createApp(App);
 // app.use(router);
 // app.use(dayjs);
