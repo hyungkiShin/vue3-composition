@@ -8,6 +8,9 @@
           <input v-model="params.title_like" type="text" class="form-control" />
         </div>
       </div>
+      <div class="col">
+        <select class="form-select"></select>
+      </div>
     </form>
     <hr class="my-4" />
     <div class="row g-3">
