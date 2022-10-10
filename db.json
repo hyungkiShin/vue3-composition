@@ -43,12 +43,6 @@
       "createdAt": "2023-01-07"
     },
     {
-      "title": "제목8test",
-      "content": "내용8testdwdw",
-      "createdAt": "2023-01-08",
-      "id": 8
-    },
-    {
       "id": 9,
       "title": "제목9",
       "content": "내용9",
@@ -59,6 +53,18 @@
       "content": "한녀라핳",
       "createdAt": 1665402743344,
       "id": 10
+    },
+    {
+      "title": "하하",
+      "content": "하하",
+      "createdAt": 1665418166099,
+      "id": 11
+    },
+    {
+      "title": "하하",
+      "content": "하하",
+      "createdAt": 1665418166101,
+      "id": 12
     }
   ],
   "comments": [

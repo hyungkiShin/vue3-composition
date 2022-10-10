@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import { useAlert } from '@/composables/alert';
-const { alerts } = useAlert();
+// import { useAlert } from '@/composables/alert';
+// const { alerts } = useAlert();
 const typeStyle = type => (type === 'error' ? 'alert-danger' : 'alert-primary');
 </script>
 
