@@ -31,8 +31,9 @@ const router = useRouter();
 const posts = ref([]);
 
 const fetchPosts = async () => {
-  const response = await getPosts();
-  console.log(response);
+  // const { data } = await getPosts();
+  // posts.value = data;
+  ({ data: posts.value } = await getPosts());
 };
 
 fetchPosts();

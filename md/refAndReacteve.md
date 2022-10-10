@@ -8,7 +8,7 @@ import { ref } from 'vue'
 
 const form = ref({}); // 객체 초기화
 
-const data = { "title" : '제목1' , "content": "내용1", createAt: "2024-04-01" }
+const data = { "title" : '제목1' , "content": "내용1", createdAt: "2024-04-01" }
 
 // 핵심 포인트
 form.value = { ...data }
@@ -24,12 +24,12 @@ import { ref } from 'vue'
 
 const form = ref({}); // 객체 초기화
 
-const data = { "title" : '제목1' , "content": "내용1", createAt: "2024-04-01" }
+const data = { "title" : '제목1' , "content": "내용1", createdAt: "2024-04-01" }
 
 // 핵심 포인트
 form.title = data.title
 form.content = data.content
-form.createAt = data.createAt
+form.createdAt = data.createdAt
 ```
 
 ---

@@ -4,31 +4,43 @@
       "id": 1,
       "title": "제목1",
       "content": "내용1",
-      "createAt": "2023-01-01"
+      "createdAt": "2023-01-01"
     },
     {
-      "id": 2,
       "title": "제목2",
-      "content": "내용2",
-      "createAt": "2023-01-02"
+      "content": "내용2 입니다 하하\n",
+      "createdAt": "2023-01-02",
+      "id": 2
     },
     {
       "id": 3,
       "title": "제목3",
       "content": "내용3",
-      "createAt": "2023-01-03"
+      "createdAt": "2023-01-03"
     },
     {
       "id": 4,
       "title": "제목4",
       "content": "내용4",
-      "createAt": "2023-01-04"
+      "createdAt": "2023-01-04"
     },
     {
       "id": 5,
       "title": "제목5",
       "content": "내용5",
-      "createAt": "2023-01-05"
+      "createdAt": "2023-01-05"
+    },
+    {
+      "title": "오늘의 인테리어 ",
+      "content": "감사합니다",
+      "createdAt": 1665388194462,
+      "id": 6
+    },
+    {
+      "title": "오늘의 인테리어 ",
+      "content": "fefef",
+      "createdAt": 1665388262946,
+      "id": 7
     }
   ],
   "comments": [
